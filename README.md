@@ -15,6 +15,8 @@ I needed a centralized way to prevent borg backups from running against a set of
 
 ## How
 
+`borg with-lock` almost accomplishes what I need, but it lacks the ability to gather multiple locks simultaneously, and even if done serially there are issues.
+
 Borg has an internal `Lock` mechanism which functions like a mutex. We acquire this lock for multiple repositories simultaneously.
 
 This lock is respected across physical machines, so long as they are all writeable on a file system or virtual file system. This does not work over SSH like borg.
