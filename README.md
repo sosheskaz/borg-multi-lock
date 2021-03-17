@@ -20,3 +20,9 @@ Borg has an internal `Lock` mechanism which functions like a mutex. We acquire t
 This lock is respected across physical machines, so long as they are all writeable on a file system or virtual file system. This does not work over SSH like borg.
 
 That is, this script expects to be run from the machine hosting the borg repositories, but will prevent any clients from using the repositories (unless they explicitly break the lock).
+
+## Usage
+
+```bash
+sudo ./borg-multi-lock.py -r /path/to/repo/1 /path/to/repo/2 /path/to/repo/N -- echo "This command will be run only while borg locks for all specified repos have been acquired"
+```
